@@ -1,0 +1,244 @@
+/* ============================================================
+   1. ДИЗАЙН-ТОКЕНИ (ті самі значення, що у Figma Variables)
+   ============================================================ */
+:root {
+  /* 4 кольори */
+  --bg: #DDE7E1;       /* Background — тло сторінки */
+  --surface: #FAFCFA;  /* Surface — тло картки */
+  --text: #13231D;     /* Text — увесь текст та іконки */
+  --accent: #0A6A52;   /* Accent — вибрана картка, фокус */
+
+  /* 2 стилі тексту */
+  --font: "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --title: 600 1rem/1.5rem var(--font);        /* Title: SemiBold 16 / 24 */
+  --body: 400 0.875rem/1.25rem var(--font);    /* Body: Regular 14 / 20 */
+
+  /* Похідні значення (у Figma: колір Text із прозорістю) */
+  --border: color-mix(in srgb, var(--text) 22%, transparent);
+  --hover-fill: color-mix(in srgb, var(--text) 10%, transparent);
+
+  /* Відступи та радіуси (у Figma: gap, padding, corner radius) */
+  --gap: 0.75rem;         /* 12 */
+  --pad: 1rem;            /* 16 */
+  --radius-card: 0.875rem;/* 14 */
+  --speed: 160ms;
+}
+
+/* ============================================================
+   2. БАЗА
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: var(--body);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   3. КОНТЕЙНЕР ДЕМО-СТОРІНКИ
+   ============================================================ */
+.checkout {
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: clamp(1rem, 5vw, 3rem) clamp(0.75rem, 4vw, 1.5rem);
+}
+
+.checkout__title {
+  margin: 0 0 1.5rem;
+  font: var(--title);
+}
+
+.checkout__group {
+  display: grid;
+  gap: var(--gap);
+  min-width: 0;   /* дозволяє fieldset стискатися разом із контейнером */
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.checkout__legend {
+  margin-bottom: 0.25rem;
+  padding: 0;
+  font: var(--body);
+}
+
+/* ============================================================
+   4. КОМПОНЕНТ: PAYMENT METHOD CARD
+   ============================================================ */
+.pay-card {
+  position: relative;        /* опора для розтягнутого <label> */
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: var(--pad);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-card);
+  transition: border-color var(--speed) ease;
+}
+
+/* --- Радіо-кнопка ------------------------------------------ */
+.pay-card__radio {
+  appearance: none;
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  background: var(--surface);
+  border: 2px solid var(--text);
+  border-radius: 50%;
+  transition: background-color var(--speed) ease,
+              border-color var(--speed) ease,
+              box-shadow var(--speed) ease;
+}
+
+.pay-card__radio:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 3px var(--surface);  /* лишає крапку 10 px */
+}
+
+/* --- Логотип платіжної системи ----------------------------- */
+.pay-card__logo {
+  flex: none;
+  width: 3rem;
+  height: 2rem;
+  color: var(--text);
+}
+
+.pay-card__logo-frame {
+  fill: var(--bg);
+}
+
+.pay-card__logo-word {
+  fill: currentColor;
+  font-family: var(--font);
+  font-weight: 600;
+}
+
+.pay-card__logo-accent {
+  fill: var(--accent);
+}
+
+/* --- Текстовий блок ---------------------------------------- */
+.pay-card__info {
+  flex: 1 1 0;
+  min-width: 0;              /* текст переноситься, а не розпирає картку */
+}
+
+.pay-card__title {
+  margin: 0;
+  font: var(--title);
+}
+
+.pay-card__label {
+  cursor: pointer;
+}
+
+/* Уся картка клікабельна: псевдоелемент label накриває її повністю */
+.pay-card__label::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.pay-card__number {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.pay-card__expiry {
+  margin: 0;
+  font: var(--body);
+}
+
+/* --- Іконочна кнопка «Видалити» ---------------------------- */
+.pay-card__remove {
+  position: relative;        /* підіймає кнопку над розтягнутим label */
+  z-index: 1;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color var(--speed) ease;
+}
+
+/* ============================================================
+   5. СТАНИ
+   ============================================================ */
+
+/* Hover */
+.pay-card:hover {
+  border-color: var(--text);
+}
+
+.pay-card__remove:hover {
+  background: var(--hover-fill);
+}
+
+/* Selected — вибрана картка */
+.pay-card:has(.pay-card__radio:checked) {
+  border-color: var(--accent);
+}
+
+/* Focus — лише для клавіатури */
+.pay-card__radio:focus-visible,
+.pay-card__remove:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Якщо браузер знає :has(), кільце фокуса малюємо навколо всієї картки */
+@supports selector(:has(*)) {
+  .pay-card:has(.pay-card__radio:focus-visible) {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .pay-card__radio:focus-visible {
+    outline: none;
+  }
+}
+
+/* ============================================================
+   6. НАЛАШТУВАННЯ КОРИСТУВАЧА
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .pay-card,
+  .pay-card__radio,
+  .pay-card__remove {
+    transition: none;
+  }
+}
+
+/* Режим високої контрастності Windows: повертаємо системну радіо-кнопку */
+@media (forced-colors: active) {
+  .pay-card__radio {
+    appearance: auto;
+  }
+}

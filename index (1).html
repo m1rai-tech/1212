@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payment Method Card — Практична робота №1</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="checkout">
+    <h1 class="checkout__title">Оформлення замовлення</h1>
+
+    <form>
+      <fieldset class="checkout__group">
+        <legend class="checkout__legend">Спосіб оплати</legend>
+
+        <!-- Картка 1: вибрана -->
+        <article class="pay-card">
+          <input class="pay-card__radio" type="radio" name="payment-method"
+                 id="pm-visa-4242" value="visa-4242"
+                 aria-describedby="pm-visa-4242-expiry" checked>
+
+          <svg class="pay-card__logo" viewBox="0 0 48 32" aria-hidden="true">
+            <rect class="pay-card__logo-frame" width="48" height="32" rx="6"/>
+            <text class="pay-card__logo-word" x="24" y="21" text-anchor="middle" font-size="13">VISA</text>
+          </svg>
+
+          <div class="pay-card__info">
+            <h2 class="pay-card__title">
+              <label class="pay-card__label" for="pm-visa-4242">
+                Visa
+                <span class="pay-card__number" aria-hidden="true">•••• 4242</span>
+                <span class="visually-hidden">, номер закінчується на 4242</span>
+              </label>
+            </h2>
+            <p class="pay-card__expiry" id="pm-visa-4242-expiry">
+              Дійсна до <time datetime="2027-08">08/27</time>
+            </p>
+          </div>
+
+          <button class="pay-card__remove" type="button"
+                  aria-label="Видалити картку Visa, що закінчується на 4242">
+            <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"
+                 fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3.5 5.5h13M8 5.5V3.75h4V5.5M5.5 5.5l.7 10.25h7.6l.7-10.25M8.5 8.5V13M11.5 8.5V13"/>
+            </svg>
+          </button>
+        </article>
+
+        <!-- Картка 2 -->
+        <article class="pay-card">
+          <input class="pay-card__radio" type="radio" name="payment-method"
+                 id="pm-mc-5519" value="mastercard-5519"
+                 aria-describedby="pm-mc-5519-expiry">
+
+          <svg class="pay-card__logo" viewBox="0 0 48 32" aria-hidden="true">
+            <rect class="pay-card__logo-frame" width="48" height="32" rx="6"/>
+            <circle cx="19" cy="16" r="8" fill="currentColor"/>
+            <circle class="pay-card__logo-accent" cx="29" cy="16" r="8" fill-opacity="0.85"/>
+          </svg>
+
+          <div class="pay-card__info">
+            <h2 class="pay-card__title">
+              <label class="pay-card__label" for="pm-mc-5519">
+                Mastercard
+                <span class="pay-card__number" aria-hidden="true">•••• 5519</span>
+                <span class="visually-hidden">, номер закінчується на 5519</span>
+              </label>
+            </h2>
+            <p class="pay-card__expiry" id="pm-mc-5519-expiry">
+              Дійсна до <time datetime="2028-11">11/28</time>
+            </p>
+          </div>
+
+          <button class="pay-card__remove" type="button"
+                  aria-label="Видалити картку Mastercard, що закінчується на 5519">
+            <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"
+                 fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3.5 5.5h13M8 5.5V3.75h4V5.5M5.5 5.5l.7 10.25h7.6l.7-10.25M8.5 8.5V13M11.5 8.5V13"/>
+            </svg>
+          </button>
+        </article>
+
+        <!-- Картка 3 -->
+        <article class="pay-card">
+          <input class="pay-card__radio" type="radio" name="payment-method"
+                 id="pm-prostir-9004" value="prostir-9004"
+                 aria-describedby="pm-prostir-9004-expiry">
+
+          <svg class="pay-card__logo" viewBox="0 0 48 32" aria-hidden="true">
+            <rect class="pay-card__logo-frame" width="48" height="32" rx="6"/>
+            <text class="pay-card__logo-word" x="24" y="19.5" text-anchor="middle"
+                  font-size="8.5">ПРОСТІР</text>
+          </svg>
+
+          <div class="pay-card__info">
+            <h2 class="pay-card__title">
+              <label class="pay-card__label" for="pm-prostir-9004">
+                ПРОСТІР
+                <span class="pay-card__number" aria-hidden="true">•••• 9004</span>
+                <span class="visually-hidden">, номер закінчується на 9004</span>
+              </label>
+            </h2>
+            <p class="pay-card__expiry" id="pm-prostir-9004-expiry">
+              Дійсна до <time datetime="2029-03">03/29</time>
+            </p>
+          </div>
+
+          <button class="pay-card__remove" type="button"
+                  aria-label="Видалити картку ПРОСТІР, що закінчується на 9004">
+            <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"
+                 fill="none" stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3.5 5.5h13M8 5.5V3.75h4V5.5M5.5 5.5l.7 10.25h7.6l.7-10.25M8.5 8.5V13M11.5 8.5V13"/>
+            </svg>
+          </button>
+        </article>
+      </fieldset>
+    </form>
+  </main>
+</body>
+</html>
